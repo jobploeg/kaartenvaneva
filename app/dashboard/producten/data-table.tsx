@@ -1,10 +1,27 @@
 "use client"
 
+import * as React from "react"
+
+import { Button } from "../../../components/ui/button"
+import { Input } from "../../../components/ui/input"
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "../../../components/ui/dropdown-menu"
+
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
+  getPaginationRowModel,
+  SortingState,
+  getSortedRowModel,
+  ColumnFiltersState,
+  getFilteredRowModel,
+  VisibilityState,
 } from "@tanstack/react-table"
 
 import {
@@ -14,6 +31,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
+  
 } from "../../../components/ui/table"
 
 interface DataTableProps<TData, TValue> {
@@ -25,14 +43,71 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  )
+  const [columnVisibility, setColumnVisibility] =
+  React.useState<VisibilityState>({})
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
+    state: {
+      sorting,
+      columnFilters,
+      columnVisibility,
+    },
   })
 
   return (
-    <div className="rounded-md border">
+    <div>
+       <div className="flex items-center py-4 ">
+        <Input
+          placeholder="Filter op Categorie"
+          value={(table.getColumn("category")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("category")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm bg-white shadow-sm"
+        />
+        <DropdownMenu >
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="ml-auto bg-white shadow-sm">
+              Kolommen
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            {table
+              .getAllColumns()
+              .filter(
+                (column) => column.getCanHide()
+              )
+              .map((column) => {
+                return (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="capitalize"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value) =>
+                      column.toggleVisibility(!!value)
+                    }
+                  >
+                    {column.id}
+                  </DropdownMenuCheckboxItem>
+                )
+              })}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    <div className="rounded-md border bg-gray-50 shadow-sm">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -75,6 +150,27 @@ export function DataTable<TData, TValue>({
           )}
         </TableBody>
       </Table>
+    </div>
+    <div className="flex items-center justify-end space-x-2 py-4">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+          className="bg-white shadow-sm"
+        >
+          Vorige
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+          className="bg-white shadow-sm"
+        >
+          Volgende
+        </Button>
+      </div>
     </div>
   )
 }
