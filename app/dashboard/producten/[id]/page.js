@@ -1,6 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
-import { getProduct } from "@/lib/supabaseAPI";
+import { getProduct } from "../../../../lib/supabaseAPI";
 import { useEffect, useState } from "react";
 
 export default function Page() {
