@@ -2,6 +2,8 @@
 
 import * as React from "react"
 
+import { Eye } from "lucide-react"
+
 import { Button } from "../../../components/ui/button"
 import { Input } from "../../../components/ui/input"
 import {
@@ -81,7 +83,7 @@ export function DataTable<TData, TValue>({
         <DropdownMenu >
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto bg-white shadow-sm">
-              Kolommen
+              <Eye className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">

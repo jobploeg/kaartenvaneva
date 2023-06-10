@@ -3,8 +3,6 @@ import { DataTable } from "./data-table"
 import { supabase } from "../../../lib/supabaseClient"
  
 async function getData(): Promise<Products[]> {
-  // Fetch data from your API here.
-
   const { data, error } = await supabase 
     .from('products')
     .select('*')
@@ -20,7 +18,7 @@ export default async function Page() {
   const data = await getData()
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="mx-auto py-10 md:px-16">
       <DataTable columns={columns} data={data} />
     </div>
   );

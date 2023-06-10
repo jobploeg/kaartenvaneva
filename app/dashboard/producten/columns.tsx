@@ -32,13 +32,22 @@ export const columns: ColumnDef<Products>[] = [
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="-ml-4"
+          className="-ml-1"
         >
           Titel
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
     },
+    cell: ({ row }) => {
+      return (
+        <div className="pl-3">
+        <Link href={`/dashboard/producten/${row.original.id}`}>
+          <p className="hover:font-medium">{row.original.title}</p>
+        </Link>
+        </div>
+      )
+    }
   },
   {
     accessorKey: "category",
@@ -54,6 +63,15 @@ export const columns: ColumnDef<Products>[] = [
         </Button>
       )
     },
+    cell: ({ row }) => {
+      return (
+        <div className="pl-3">
+        <Link href={`/dashboard/producten/${row.original.id}`}>
+          <p className="hover:font-medium">{row.original.title}</p>
+        </Link>
+        </div>
+      )
+    }
   },
   {
     accessorKey: "price",
@@ -63,12 +81,27 @@ export const columns: ColumnDef<Products>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           className="-ml-4"
+
         >
           Prijs
           <ArrowUpDown className="ml-2 h-4 w-4" />
+          
         </Button>
       )
     },
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue("price"))
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "EUR",
+      }).format(amount)
+ 
+      return <div>
+        <Link href={`/dashboard/producten/${row.original.id}`}>
+          <p className="hover:font-medium">{formatted}</p>
+        </Link></div>
+    },
+
   },
   {
     id: "actions",
@@ -76,33 +109,35 @@ export const columns: ColumnDef<Products>[] = [
       const productId = row.original.id
  
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Opties</DropdownMenuLabel>
-            <DropdownMenuSeparator />
+        <div className="text-right pr-3">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0 text-right">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4 text-right" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Opties</DropdownMenuLabel>
+              <DropdownMenuSeparator />
 
-            <DropdownMenuItem>
-              <Link href={`/dashboard/producten/${productId}`}>
-                bekijken
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href={`/dashboard/producten/${productId}/edit`}>
-              Bewerken
-              </Link>
-            </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href={`/dashboard/producten/${productId}`}>
+                  bekijken
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href={`/dashboard/producten/${productId}/edit`}>
+                Bewerken
+                </Link>
+              </DropdownMenuItem>
 
-            <DropdownMenuSeparator />
+              <DropdownMenuSeparator />
 
-            <DropdownMenuItem>Verwijderen</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+              <DropdownMenuItem>Verwijderen</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       )
     },
   }
