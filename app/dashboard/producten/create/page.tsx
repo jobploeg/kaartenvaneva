@@ -25,7 +25,7 @@ export default async function Page() {
 
   return (
     <div className="md:p-16 flex flex-col justify-center items-center">
-      <div className=" shadow-sm  rounded bg-white  p-10 w-2/3">
+      <div className=" shadow-sm  rounded-md bg-white p-10 w-2/3">
         <Form categories={categories} />
       </div>
     </div>

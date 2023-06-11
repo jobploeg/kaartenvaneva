@@ -3,6 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useForm } from "react-hook-form"
+import { supabase } from "../../../../lib/supabaseClient"
+import { Loader2 } from "lucide-react"
 import {
     Select,
     SelectContent,
@@ -22,37 +24,46 @@ import {
   FormMessage,
 } from "../../../../components/ui/form"
 import { Input } from "../../../../components/ui/input"
-import { use } from "react"
-
-
+import { Key, useState } from "react"
 
 const formSchema = z.object({
     title: z.string(),
     description: z.string(),
-    price: z.number().positive(),
-    category: z.string().optional(),
-    imageURLs: z.string().url().optional(),
+    category: z.string(),    
 
+    price: z.string().refine((val) => {
+        return !isNaN(Number(val))
+    }, "Price must be a number"),
 })
 
 export default function ProfileForm({ categories }) {
-    // 1. Define your form.
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             title: "",
-            description: "",  
-            price: 5,
-            category: "",
-            imageURLs: "", 
+            description: "", 
+            price: "",
+            category: "",  
         },
       })
      
-      // 2. Define a submit handler.
-      function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values)
+      async function onSubmit(values: z.infer<typeof formSchema>) {
+        // save the form data to supabase
+        const { data, error } = await supabase
+            .from("products")
+            .insert([
+                {
+                    title: values.title,
+                    description: values.description,
+                    price: values.price,
+                    category: values.category,
+                },
+            ])
+        if (error) {
+            throw error
+        } else {
+            form.reset()
+        }
       }
 
   return (
@@ -65,72 +76,61 @@ export default function ProfileForm({ categories }) {
             <FormItem>
               <FormLabel >Titel</FormLabel>
               <FormControl>
-                <Input placeholder="Prijs" {...field} />
+                <Input placeholder="Titel" required {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-         <FormField
-          control={form.control}
-          name="description"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel >Beschrijving</FormLabel>
-              <FormControl>
-                <Textarea placeholder="Beschrijving" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-         <FormField
-          control={form.control}
-          name="price"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel >Prijs</FormLabel>
-              <FormControl>
-                <Textarea placeholder="€" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-         <FormField
-          control={form.control}
-          name="category"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel >Categorie</FormLabel>
-              <FormControl>
-              <Select>
-                <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Categorie" />
-                </SelectTrigger>
-                <SelectContent>
-                    {categories.map((category) => (
-                        <SelectItem key={category.id} value={category.name}>{category.name}</SelectItem>
-                    ))}
-                </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-         <FormField
-          control={form.control}
-          name="imageURLs"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel >Afbeeldingen (Comming soon)</FormLabel>
-              <FormControl>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <FormField
+         control={form.control}
+         name="description"
+         render={({ field }) => (
+           <FormItem>
+             <FormLabel >Beschrijving</FormLabel>
+             <FormControl>
+               <Textarea placeholder="Beschrijving"  required {...field} />
+             </FormControl>
+             <FormMessage />
+           </FormItem>
+         )}
+       />
+        <FormField
+         control={form.control}
+         name="price"
+         render={({ field }) => (
+           <FormItem>
+             <FormLabel >Prijs</FormLabel>
+             <FormControl>
+               <Input placeholder="€"  {...field} />
+             </FormControl>
+             <FormMessage />
+           </FormItem>
+         )}
+       />
+        <FormField
+         control={form.control}
+         name="category"
+         render={({ field }) => (
+           <FormItem>
+             <FormLabel >Categorie</FormLabel>
+             <FormControl>
+             <Select onValueChange={field.onChange} {...field}>
+               <SelectTrigger className="w-[180px]">
+                   <SelectValue placeholder="Categorie" />
+               </SelectTrigger>
+               <SelectContent >
+                   {categories.map((category: { id: Key; name: string }) => (
+                       <SelectItem key={category.id} value={category.name} >{category.name} </SelectItem>
+                   ))}
+               </SelectContent>
+               </Select>
+             </FormControl>
+             <FormMessage />
+           </FormItem>
+         )}
+       />
+         
         <Button type="submit">Toevoegen</Button>
       </form>
     </Form>
