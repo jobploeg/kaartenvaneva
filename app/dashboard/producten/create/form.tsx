@@ -103,7 +103,7 @@ export default function ProfileForm({ categories }) {
                 },
             ])
         if (error) {
-            throw error
+            toast.error("Er is een probleem met het toevoegen van het product. Probeer het later opnieuw.")
         } else {
             toast.success('Product toegevoegd!')
             form.reset()

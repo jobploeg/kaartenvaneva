@@ -33,7 +33,7 @@ export default function Sidebar() {
               >
                 <Button
                   variant="ghost"
-                  className="w-full text-md justify-start bg-accent hover:bg-slate-200 rounded-t-lg rounded-b-none"
+                  className="w-full text-md justify-start shadow-none hover:bg-slate-200 rounded-t-lg rounded-b-none"
                 >
                   Dashboard
                 </Button>
@@ -46,7 +46,7 @@ export default function Sidebar() {
               >
                 <Button
                   variant="ghost"
-                  className="w-full text-md justify-start bg-accent hover:bg-slate-200 rounded-none"
+                  className="w-full text-md justify-start shadow-none hover:bg-slate-200 rounded-none"
                 >
                   Producten
                 </Button>
@@ -59,7 +59,7 @@ export default function Sidebar() {
               >
                 <Button
                   variant="ghost"
-                  className="w-full text-md justify-start bg-accent hover:bg-slate-200 rounded-t-none rounded-b-lg"
+                  className="w-full text-md justify-start shadow-none hover:bg-slate-200 rounded-t-none rounded-b-lg"
                 >
                   Bestellingen
                 </Button>

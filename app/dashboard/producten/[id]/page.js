@@ -2,18 +2,25 @@
 import { useParams } from "next/navigation";
 import { getProduct } from "../../../../lib/supabaseAPI";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Page() {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
+  const [imageURLs, setImageURLs] = useState([]);
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
 
   useEffect(() => {
     async function fetchProduct() {
       const product = await getProduct(id);
       setProduct(product[0]);
+      setImageURLs(product[0].imageURLs);
     }
     fetchProduct();
-  }, []);
+  }, [id]);
+
+  console.log(imageURLs);
 
   return (
     <div className="m-10 flex gap-2 flex-col w-1/2">
@@ -21,6 +28,25 @@ export default function Page() {
       <p>{product.description}</p>
       <p>€ {product.price}</p>
       <p>{product.category}</p>
+      {/* {imageURLs.map((imageURL) => {
+        return (
+          <Image
+            src={
+              supabaseUrl +
+              "/storage/v1/object/sign/images/" +
+              imageURL +
+              "?token=" +
+              supabaseKey +
+              "&t=" +
+              Date.now()
+            }
+            alt={product.title}
+            width={200}
+            height={200}
+            key={imageURL}
+          />
+        );
+      })} */}
     </div>
   );
 }
