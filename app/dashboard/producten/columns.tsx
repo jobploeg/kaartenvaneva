@@ -13,7 +13,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../../..//components/ui/dropdown-menu"
+} from "../../../components/ui/dropdown-menu"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -67,7 +67,7 @@ export const columns: ColumnDef<Products>[] = [
       return (
         <div className="pl-3">
         <Link href={`/dashboard/producten/${row.original.id}`}>
-          <p className="hover:font-medium">{row.original.title}</p>
+          <p className="hover:font-medium">{row.original.category}</p>
         </Link>
         </div>
       )
@@ -109,10 +109,10 @@ export const columns: ColumnDef<Products>[] = [
       const productId = row.original.id
  
       return (
-        <div className="text-right pr-3">
+        <div className="text-right pr-3 ">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0 text-right">
+              <Button variant="ghost" className="h-8 w-8 p-0 text-right shadow-none">
                 <span className="sr-only">Open menu</span>
                 <MoreHorizontal className="h-4 w-4 text-right" />
               </Button>

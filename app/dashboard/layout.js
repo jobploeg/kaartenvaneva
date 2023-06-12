@@ -7,7 +7,9 @@ export default function RootLayout({ children }) {
         <aside>
           <Sidebar />
         </aside>
-        <main className="w-5/6 absolute right-0">{children}</main>
+        <main className="md:w-5/6 md:absolute md:right-0 px-5 md:px-0">
+          {children}
+        </main>
       </body>
     </html>
   );

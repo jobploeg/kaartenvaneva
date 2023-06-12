@@ -24,8 +24,8 @@ export default async function Page() {
   const categories = await getCategories()
 
   return (
-    <div className="md:p-16 flex flex-col justify-center items-center">
-      <div className=" shadow-sm  rounded-md bg-white p-10 w-2/3">
+    <div className="md:p-16 flex flex-col justify-center items-center mt-10 md:mt-0 ">
+      <div className="md:w-3/4 bg-white p-10 rounded-md w-5/6">
         <Form categories={categories} />
       </div>
     </div>

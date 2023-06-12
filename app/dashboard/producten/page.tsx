@@ -7,7 +7,7 @@ import Link from "next/link"
 async function getData(): Promise<Products[]> {
   const { data, error } = await supabase 
     .from('products')
-    .select('*')
+    .select('title, category, price, id')
  
   if (error) {
     throw error
@@ -18,10 +18,9 @@ async function getData(): Promise<Products[]> {
 
 export default async function Page() {
   const data = await getData()
-
   return (
     <div className="mx-auto py-10 md:px-16">
-      <div className="flex justify-between pb-10 -mt-2">
+      <div className="flex justify-between pb-10 md:-mt-2">
       <h1 className="text-4xl font-semibold">Producten</h1>
       <Button variant="default">
         <Link href="/dashboard/producten/create">
