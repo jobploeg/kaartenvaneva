@@ -1,43 +1,41 @@
-import Image from "next/image";
 import Link from "next/link";
-import ProductInfo from "./ProductInfo";
+import Image from "next/image";
+import { Button } from "../ui/button";
 
-export default function ProductCard({ data }) {
-  const datalength = data.length;
-
-  //make three columns
-  const col1 = [];
-  const col2 = [];
-  const col3 = [];
-  const col4 = [];
-
-  for (let i = 0; i < datalength; i++) {
-    if (i % 4 === 0) {
-      col1.push(data[i]);
-    } else if (i % 4 === 1) {
-      col2.push(data[i]);
-    } else if (i % 4 === 2) {
-      col3.push(data[i]);
-    } else if (i % 4 === 3) {
-      col4.push(data[i]);
-    }
-  }
+export default function ProductCard({ product }) {
   return (
-    <div>
-      <div className="md:block hidden ">
-        <div className="flex ">
-          <ProductInfo data={col1} />
+    <ul className="mt-4 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
+      {product.map((product) => (
+        <div
+          key={product.id}
+          className="flex flex-column group overflow-hidden rounded-md"
+        >
+          <li className="my-3">
+            <Link href={`/product/${product.id}`}>
+              <Image
+                src={
+                  "https://izfokcthbvgcezxcusgh.supabase.co/storage/v1/object/public/images/" +
+                  product.imageURLs[0]
+                }
+                alt={product.title}
+                height={300}
+                width={300}
+                className="w-screen h-80 object-cover bg-center rounded transition duration-500 group-hover:scale-90 hover:rounded-md shadow-sm"
+                loading="lazy"
+              />
 
-          <ProductInfo data={col2} />
-
-          <ProductInfo data={col3} />
-
-          <ProductInfo data={col4} />
+              <div className="flex-1">
+                <h3 className="text-xl mt-2">{product.title}</h3>
+                <p className="font-medium text-lg">
+                  <span className="sr-only"> Prijs </span>
+                  <span>€ {product.price}</span>
+                </p>
+                <Button className="mt-4 w-max">Bekijk product</Button>
+              </div>
+            </Link>
+          </li>
         </div>
-      </div>
-      <div className="md:hidden">
-        <div className="grid grid-cols-fluid gap-10 h-fit ">Comming soon</div>
-      </div>
-    </div>
+      ))}
+    </ul>
   );
 }
