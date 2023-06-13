@@ -164,8 +164,8 @@ export default function ProfileForm({ categories }) {
                    <SelectValue placeholder="Categorie" />
                </SelectTrigger>
                <SelectContent >
-                   {categories.map((category: { id: Key; name: string }) => (
-                       <SelectItem key={category.id} value={category.name} >{category.name} </SelectItem>
+                   {categories.map((category: { id: any, name: string }) => (
+                       <SelectItem key={category.id} value={category.id} >{category.name} </SelectItem>
                    ))}
                </SelectContent>
                </Select>
