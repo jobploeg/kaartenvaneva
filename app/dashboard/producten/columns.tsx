@@ -20,7 +20,7 @@ import {
 export type Products = {
   id: string
   title: string,
-  category: string,
+  categories: any,
   price: number,
 }
 
@@ -67,7 +67,7 @@ export const columns: ColumnDef<Products>[] = [
       return (
         <div className="pl-3">
         <Link href={`/dashboard/producten/${row.original.id}`}>
-          <p className="hover:font-medium">{row.original.category}</p>
+          <p className="hover:font-medium">{row.original.categories.name}</p>
         </Link>
         </div>
       )

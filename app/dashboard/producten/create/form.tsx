@@ -20,7 +20,6 @@ import { Textarea } from "../../../../components/ui/textarea"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -163,7 +162,7 @@ export default function ProfileForm({ categories }) {
                <SelectTrigger className="w-[180px]">
                    <SelectValue placeholder="Categorie" />
                </SelectTrigger>
-               <SelectContent >
+               <SelectContent>
                    {categories.map((category: { id: any, name: string }) => (
                        <SelectItem key={category.id} value={category.id} >{category.name} </SelectItem>
                    ))}
@@ -181,10 +180,10 @@ export default function ProfileForm({ categories }) {
             <FormItem>
               <FormLabel >Afbeeldingen</FormLabel>
               <FormControl>
-                {/* <input  type="file" required multiple onChange={handleImageUpload} {...field} /> */}
                 <Input type="file" multiple 
                     onChange={handleImageUpload}
                     accept="image/*"
+                    required
                 />
               </FormControl>
               <FormMessage />

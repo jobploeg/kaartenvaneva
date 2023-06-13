@@ -1,4 +1,4 @@
-import Sidebar from "../../components/sidebar";
+import Sidebar from "../../components/dashboard/sidebar";
 
 export default function RootLayout({ children }) {
   return (
