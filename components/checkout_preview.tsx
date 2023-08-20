@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckoutSubscriptionBody } from "../app/checkout-sessions/route";
+import { CheckoutBody } from "../app/checkout-sessions/route";
 import { loadStripe } from "@stripe/stripe-js";
 import Stripe from "stripe";
 
@@ -10,12 +10,12 @@ const MonthlySubscriptionCard = () => {
     const STRIPE_PK = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;
     const stripe = await loadStripe(STRIPE_PK);
 
-    // step 2: define the data for monthly subscription
-    const body: CheckoutSubscriptionBody = {
-      interval: "month",
-      amount: 2000,
-      plan: "Monthly",
-      planDescription: "Subscribe for $20 per month",
+    // step 2: define the data
+    const body: CheckoutBody = {
+      amount: 1000,
+      quantity: 1,
+      name: "product 1",
+      description: "Product 1 description",
     };
 
     // step 3: make a post fetch api call to /checkout-session handler
