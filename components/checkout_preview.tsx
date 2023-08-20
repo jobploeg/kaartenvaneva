@@ -14,8 +14,8 @@ const MonthlySubscriptionCard = () => {
     const body: CheckoutBody = {
       amount: 1000,
       quantity: 1,
-      name: "product 1",
-      description: "Product 1 description",
+      name: "Totaal",
+      metadata: {},
     };
 
     // step 3: make a post fetch api call to /checkout-session handler
