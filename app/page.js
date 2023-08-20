@@ -1,7 +1,11 @@
+// Remove use client later
+"use client";
+
 import ProductCard from "../components/webshop/productCard";
 import { supabase } from "../lib/supabaseClient";
 import Filter from "../components/webshop/filter";
 import Sort from "../components/webshop/sort";
+import Checkout from "../components/checkout_preview";
 
 async function getAllProducts() {
   const { data, error } = await supabase.from("products").select("*");
@@ -57,6 +61,7 @@ export default async function Page() {
           <ProductCard product={products} />
         </div>
       </section>
+      <Checkout />
     </div>
   );
 }
