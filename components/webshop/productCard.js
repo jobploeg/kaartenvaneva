@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import { ShoppingCart } from "lucide-react";
 
 export default function ProductCard({ product }) {
   return (
@@ -23,16 +24,26 @@ export default function ProductCard({ product }) {
                 className="w-screen h-80 object-cover bg-center rounded transition duration-500 group-hover:scale-90 hover:rounded-md shadow-sm"
                 loading="lazy"
               />
-
-              <div className="flex-1">
-                <h3 className="text-xl mt-2">{product.title}</h3>
-                <p className="font-medium text-lg">
-                  <span className="sr-only"> Prijs </span>
-                  <span>€ {product.price}</span>
-                </p>
-                <Button className="mt-4 w-max">Bekijk product</Button>
-              </div>
             </Link>
+
+            <div className="flex-1">
+              <h3 className="text-xl mt-2">{product.title}</h3>
+              <p className="font-medium text-lg">
+                <span className="sr-only"> Prijs </span>
+                <span>€ {product.price}</span>
+              </p>
+
+              <span className="flex justify-between">
+                <Button className="mt-4 w-max">
+                  <Link href={`/product/${product.id}`}>Bekijk product</Link>
+                </Button>
+                <Button variant="ghost" size="icon" className="hover:scale-105">
+                  <Link href={"/"}>
+                    <ShoppingCart />{" "}
+                  </Link>
+                </Button>
+              </span>
+            </div>
           </li>
         </div>
       ))}
