@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { ShoppingCart } from "lucide-react";
+import { addCart } from "../addCart";
 
 export default function ProductCard({ product }) {
   return (
@@ -37,10 +38,13 @@ export default function ProductCard({ product }) {
                 <Button className="mt-4 w-max">
                   <Link href={`/product/${product.id}`}>Bekijk product</Link>
                 </Button>
-                <Button variant="ghost" size="icon" className="hover:scale-105">
-                  <Link href={"/"}>
-                    <ShoppingCart />{" "}
-                  </Link>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="hover:scale-105"
+                  onClick={() => addCart(product.id)}
+                >
+                  <ShoppingCart />{" "}
                 </Button>
               </span>
             </div>
