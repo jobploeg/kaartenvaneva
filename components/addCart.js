@@ -1,16 +1,13 @@
+import Cookies from "js-cookie";
+
 export function addCart(id) {
   if (typeof window !== "undefined") {
-    if (localStorage.getItem("cart")) {
-      let cart = localStorage.cart + ",";
-      let product = JSON.stringify(id);
+    if (Cookies.get("cart")) {
+      let cart = Cookies.get("cart");
 
-      localStorage.cart = cart + product;
-
-      //make array from string
-      //gone need that later, not important now!!!
-      cart = cart.split(",");
+      Cookies.set("cart", cart + id + ",");
     } else {
-      localStorage.setItem("cart", JSON.stringify(id));
+      Cookies.set("cart", id + ",");
     }
   }
 }

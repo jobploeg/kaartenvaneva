@@ -1,40 +1,53 @@
-"use client";
+import { supabase } from "../../lib/supabaseClient";
+import { cookies } from "next/headers";
+import Image from "next/image";
 
-import { useEffect, useState } from "react";
+// import Cart from "../../components/cart";
+// import getCart from "../../components/addCart";
 
-export default function Page() {
-  const [cart, setCart] = useState([]);
+async function getProducts(ids) {
+  const { data, error } = await supabase
+    .from("products")
+    .select()
+    .in("id", ids);
 
-  useEffect(() => {
-    let cart;
-    let newCart = [];
+  if (error) {
+    throw error;
+  }
 
-    //get cart from localstorage
-    if (localStorage.getItem("cart")) {
-      cart = localStorage.getItem("cart");
-    } else {
-      cart = cart;
-    }
+  return data;
+}
 
-    //transfrom cart from string to array
-    cart = cart.split(",");
+export default async function Page() {
+  const cookieStore = cookies();
+  const cart = cookieStore.get("cart").value;
 
-    // count and remove duplicates, result id/quantity
-    cart = cart.reduce((cnt, cur) => ((cnt[cur] = cnt[cur] + 1 || 1), cnt), {});
+  const tempId = cart.split(",");
+  const removeEmtpyString = tempId.pop();
+  const ids = [...new Set(tempId)];
 
-    //go over cart and save id and quantity as value
-    Object.entries(cart).map(([key, value]) => {
-      newCart.push({
-        id: key,
-        quantity: value,
-      });
-    });
+  const products = await getProducts(ids);
+  console.log(products);
+  return (
+    <div className="flex">
+      <div className="w-1/2 h-screen  py-24 px-32">
+        {products.map((product) => (
+          <div key={product.id} className="mb-5 flex gap-2 flex-col">
+            <h1 className="text-2xl">{product.title}</h1>
+            <p>{product.description}</p>
+            <p className="mb-3 text-lg font-semibold">
+              € {product.price.toFixed(2)}{" "}
+            </p>
 
-    setCart(newCart);
-  }, []);
-
-  console.log(cart);
-
-  // Use cart ids to get the products from supabase and show them
-  return <></>;
+            <hr />
+          </div>
+        ))}
+      </div>
+      <div className="w-1/2 h-screen bg-gray-200 p-20 ">
+        <h1 className="text-4xl font-semibold flex justify-center">
+          Bestellen
+        </h1>
+      </div>
+    </div>
+  );
 }

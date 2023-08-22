@@ -1,6 +1,3 @@
-// Remove use client later
-"use client";
-
 import ProductCard from "../components/webshop/productCard";
 import { supabase } from "../lib/supabaseClient";
 import Filter from "../components/webshop/filter";
@@ -36,7 +33,7 @@ export default async function Page() {
   // window.addEventListener("storage", () => {
   //   setCategory(localStorage.getItem("category"));
   // });
-
+  console.log(products);
   return (
     <div>
       <section>
@@ -61,7 +58,7 @@ export default async function Page() {
           <ProductCard product={products} />
         </div>
       </section>
-      <Checkout />
+      {/* <Checkout /> */}
     </div>
   );
 }
