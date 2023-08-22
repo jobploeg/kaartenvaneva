@@ -3,8 +3,9 @@
 import { CheckoutBody } from "../app/checkout-sessions/route";
 import { loadStripe } from "@stripe/stripe-js";
 import Stripe from "stripe";
+import { Button } from "./ui/button";
 
-const MonthlySubscriptionCard = () => {
+const MonthlySubscriptionCard = ({ price, metadata }) => {
   const handleClick = async () => {
     // step 1: load stripe
     const STRIPE_PK = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;
@@ -12,7 +13,7 @@ const MonthlySubscriptionCard = () => {
 
     // step 2: define the data
     const body: CheckoutBody = {
-      amount: 1000,
+      amount: price,
       quantity: 1,
       name: "Totaal",
       metadata: {},
@@ -34,15 +35,10 @@ const MonthlySubscriptionCard = () => {
   };
   // render a simple card
   return (
-    <div className="border border-gray-100 rounded-md p-8 flex flex-col gap-2 items-start">
-      <h2 className="text-xl font-bold text-gray-700">Monthly Subscription</h2>
-      <p className="text-gray-400">$20 per month</p>
-      <button
-        onClick={() => handleClick()}
-        className="border border-violet-200 text-violet-500 rounded-md px-4 py-2 w-full hover:bg-violet-500 hover:text-violet-200 transition-colors"
-      >
-        Subscribe
-      </button>
+    <div className="">
+      <Button onClick={() => handleClick()} className="px-10">
+        Betalen
+      </Button>
     </div>
   );
 };

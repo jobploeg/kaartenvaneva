@@ -3,35 +3,11 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { ShoppingCart } from "lucide-react";
-import { useEffect } from "react";
+import { addCart } from "../addCart";
 
 export default function ProductOverview({ products }) {
   const product = products[0];
   const imageURLs = product.imageURLs;
-
-  function addProductToCart() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const productId = product.id;
-
-    const productInCart = cart.find(
-      (product) => product.productId === productId
-    );
-
-    console.log(productInCart);
-
-    if (productInCart === undefined) {
-      localStorage.setItem(
-        "cart",
-        JSON.stringify([{ productId, quantity: 1 }, ...cart])
-      );
-    } else {
-      productInCart.quantity++;
-      localStorage.setItem(
-        "cart",
-        JSON.stringify([{ productId, quantity: productInCart }, ...cart])
-      );
-    }
-  }
 
   return (
     <div className="flex m-32">
@@ -58,9 +34,9 @@ export default function ProductOverview({ products }) {
           {product.categories.name}
         </p>
         <p> {product.description}</p>
-        <p className="text-xl"> € {product.price}</p>
+        <p className="text-xl"> € {product.price.toFixed(2)}</p>
 
-        <Button className="mt-20 w-fit" onClick={() => addProductToCart()}>
+        <Button className="mt-20 w-fit" onClick={() => addCart(product.id)}>
           <ShoppingCart className="mr-2 h-4 w-4" /> Toevoegen aan winkelwagen
         </Button>
       </div>

@@ -33,7 +33,7 @@ export default function ProductCard({ product }) {
               <h3 className="text-xl mt-2">{product.title}</h3>
               <p className="font-medium text-lg">
                 <span className="sr-only"> Prijs </span>
-                <span>€ {product.price}</span>
+                <span>€ {product.price.toFixed(2)}</span>
               </p>
 
               <span className="flex justify-between">
