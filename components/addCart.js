@@ -12,7 +12,21 @@ export function addCart(id) {
   }
 }
 
-export function removeCart() {}
+export function removeItem(id) {
+  if (typeof window !== "undefined") {
+    if (Cookies.get("cart")) {
+      let newCart;
+      let cart = Cookies.get("cart");
+      Cookies.remove("cart");
+
+      newCart = cart.replace(id + ",", "");
+
+      Cookies.set("cart", newCart);
+    } else {
+      return;
+    }
+  }
+}
 
 export function getCart() {
   if (typeof window !== "undefined") {
