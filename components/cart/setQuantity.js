@@ -6,7 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../components/ui/select";
-import { addCart, removeItem } from "../../components/addCart";
+import { AddCart, RemoveItem } from "../../components/addCart";
 import { Button } from "../../components/ui/button";
 import { useRouter } from "next/navigation";
 
@@ -21,13 +21,13 @@ export default function SetQuantity({ quantity, products }) {
 
       //remove newQuantity amounts of id in cookie
       for (let i = 0; i < newQuantity; i++) {
-        removeItem(id);
+        RemoveItem(id);
       }
     } else {
       newQuantity = quantity - oldQuantity;
 
       for (let i = 0; i < newQuantity; i++) {
-        addCart(id);
+        AddCart(id);
       }
     }
     router.refresh();
@@ -35,7 +35,7 @@ export default function SetQuantity({ quantity, products }) {
 
   function deleteItem(id, quantity) {
     for (let i = 0; i < quantity; i++) {
-      removeItem(id);
+      RemoveItem(id);
     }
     router.refresh();
   }

@@ -4,9 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { ShoppingCart } from "lucide-react";
-import { addCart } from "../addCart";
+import { AddCart } from "../addCart";
+import { useRouter } from "next/navigation";
 
 export default function ProductCard({ product }) {
+  const router = useRouter();
+
   return (
     <ul className="mt-4 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
       {product.map((product) => (
@@ -44,7 +47,7 @@ export default function ProductCard({ product }) {
                   variant="ghost"
                   size="icon"
                   className="hover:scale-105"
-                  onClick={() => addCart(product.id)}
+                  onClick={() => AddCart(product.id) + router.refresh()}
                 >
                   <ShoppingCart />{" "}
                 </Button>

@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 
-export function addCart(id) {
+export function AddCart(id) {
   if (typeof window !== "undefined") {
     if (Cookies.get("cart")) {
       let cart = Cookies.get("cart");
@@ -12,7 +12,7 @@ export function addCart(id) {
   }
 }
 
-export function removeItem(id) {
+export function RemoveItem(id) {
   if (typeof window !== "undefined") {
     if (Cookies.get("cart")) {
       let newCart;
@@ -28,13 +28,14 @@ export function removeItem(id) {
   }
 }
 
-export function getCart() {
+export function GetCart() {
   if (typeof window !== "undefined") {
-    if (localStorage.getItem("cart")) {
-      let cart = localStorage.getItem("cart");
+    if (Cookies.get("cart")) {
+      let cart = Cookies.get("cart");
       return cart;
     } else {
-      return;
+      let cart = 0;
+      return cart;
     }
   }
 }
