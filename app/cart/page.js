@@ -16,8 +16,10 @@ async function getProducts(ids) {
   return data;
 }
 
-function calculateTotalPrice(products) {
-  const myNums = products.map((product) => product.price);
+function calculateTotalPrice(products, quantity) {
+  const myNums = products.map(
+    (product) => product.price * quantity[product.id]
+  );
 
   let sum = 0;
 
@@ -52,9 +54,7 @@ export default async function Page() {
   );
 
   const products = await getProducts(ids);
-  const totalPrice = calculateTotalPrice(products);
-
-  console.log(products);
+  const totalPrice = calculateTotalPrice(products, quantity);
 
   if (cart === "") {
     return (
@@ -75,7 +75,7 @@ export default async function Page() {
         <h1 className="text-4xl font-semibold ">Bestellen</h1>
         <span>
           <p className="text-xl font-semibold mb-5">
-            Totaal: € {totalPrice / 100}
+            Totaal: € {(totalPrice / 100).toFixed(2)}
           </p>
           <Checkout price={totalPrice} metadata={ids} />
         </span>
