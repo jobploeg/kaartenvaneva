@@ -8,9 +8,9 @@ import {
 
 export default function Sort() {
   return (
-    <div className="flex justify-center items-center">
-      <label htmlFor="SortBy" className="mr-2">
-        Sorteren op:{" "}
+    <div className="flex md:items-center -mt-5">
+      <label htmlFor="SortBy" className="mr-2  hidden md:block">
+        Sorteren op:
       </label>
       <Select>
         <SelectTrigger className="w-[180px]">

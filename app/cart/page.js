@@ -68,14 +68,14 @@ export default async function Page() {
   }
 
   return (
-    <div className="mx-40 my-20">
+    <div className="md:mx-40 my-20 mx-5">
       <h1 className="text-4xl font-bold ">Winkelwagen</h1>
 
-      <div className="flex justify-between">
-        <div className="w-1/2 h-screen  py-20">
+      <div className="md:flex justify-between">
+        <div className="md:w-1/2 md:h-screen  md:py-20 py-10">
           <SetQuantity quantity={quantity} products={products} />
         </div>
-        <div className="w-2/6 px-10 h-fit bg-gray-200  flex  flex-col mt-20 py-10 rounded">
+        <div className="md:w-2/6 px-10 h-fit bg-gray-200  flex  flex-col mt-10 md:mt-20 py-10 rounded">
           <h1 className="text-2xl font-semibold mb-5">Overzicht</h1>
           <div className="flex justify-between mb-8">
             <div>

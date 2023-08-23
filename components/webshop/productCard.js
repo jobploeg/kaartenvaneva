@@ -39,17 +39,17 @@ export default function ProductCard({ product }) {
                 <span>€ {product.price.toFixed(2)}</span>
               </p>
 
-              <span className="flex justify-between">
+              <span className="flex md:justify-between ">
                 <Button className="mt-4 w-max">
                   <Link href={`/product/${product.id}`}>Bekijk product</Link>
                 </Button>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="hover:scale-105 shadow-none"
+                  className="hover:scale-105 shadow-none ml-5 scale-110 mt-3.5 md:mt-0 md:ml-0 md:scale-100"
                   onClick={() => AddCart(product.id) + router.refresh()}
                 >
-                  <ShoppingCart />{" "}
+                  <ShoppingCart />
                 </Button>
               </span>
             </div>

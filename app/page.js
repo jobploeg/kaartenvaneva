@@ -49,7 +49,7 @@ export default async function Page() {
             </p>
           </header>
 
-          <div className="mt-8 sm:flex sm:items-center sm:justify-between">
+          <div className="mt-8 flex items-center justify-between ">
             <Filter categories={categories} />
 
             <Sort />

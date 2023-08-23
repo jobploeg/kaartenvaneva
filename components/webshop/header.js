@@ -18,7 +18,7 @@ export default function Header() {
     <div className="pt-9 px-12 flex justify-between">
       <nav>
         <Link href={"/"} className="text-2xl text-red-700 font-semibold">
-          KaartenvanEva
+          kaartenvanEva
         </Link>
       </nav>
       <div className=" hover:cursor-pointer">

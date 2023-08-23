@@ -10,7 +10,7 @@ import {
 
 export default function Filter({ categories }) {
   return (
-    <div>
+    <div className="mb-5">
       <Select>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Categorie" />
