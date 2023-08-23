@@ -46,7 +46,7 @@ export default function ProductCard({ product }) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="hover:scale-105"
+                  className="hover:scale-105 shadow-none"
                   onClick={() => AddCart(product.id) + router.refresh()}
                 >
                   <ShoppingCart />{" "}

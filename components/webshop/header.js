@@ -5,19 +5,28 @@ import { GetCart } from "../../components/addCart";
 import Link from "next/link";
 
 export default function Header() {
-  const cart = GetCart().split(",");
-
-  const totalCart = cart.length - 1;
+  let totalCart;
+  const cart = GetCart();
+  if (cart === 0) {
+    totalCart = 0;
+  } else {
+    const tempCart = cart.split(",");
+    totalCart = tempCart.length - 1;
+  }
 
   return (
-    <>
-      <nav></nav>
-      <div className="flex justify-end pt-12 pr-12 hover:cursor-pointer">
+    <div className="pt-9 px-12 flex justify-between">
+      <nav>
+        <Link href={"/"} className="text-2xl text-red-700 font-semibold">
+          KaartenvanEva
+        </Link>
+      </nav>
+      <div className=" hover:cursor-pointer">
         <Link href={"/cart"} className="flex">
           <ShoppingCart className="scale-125" />
           <p className="-mt-4 ml-2 font-semibold text-xl">{totalCart}</p>
         </Link>
       </div>
-    </>
+    </div>
   );
 }

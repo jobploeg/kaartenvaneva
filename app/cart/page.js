@@ -44,6 +44,7 @@ export default async function Page() {
   }
 
   const tempId = cart.split(",");
+  const cartLength = tempId.length - 1;
   const removeEmtpyString = tempId.pop();
   const ids = [...new Set(tempId)];
 
@@ -67,18 +68,35 @@ export default async function Page() {
   }
 
   return (
-    <div className="flex">
-      <div className="w-2/3 h-screen  py-24 px-32">
-        <SetQuantity quantity={quantity} products={products} />
-      </div>
-      <div className="w-1/3 h-screen bg-gray-200 py-24 px-32 flex items-center flex-col justify-around">
-        <h1 className="text-4xl font-semibold ">Bestellen</h1>
-        <span>
-          <p className="text-xl font-semibold mb-5">
-            Totaal: € {(totalPrice / 100).toFixed(2)}
-          </p>
+    <div className="mx-40 my-20">
+      <h1 className="text-4xl font-bold ">Winkelwagen</h1>
+
+      <div className="flex justify-between">
+        <div className="w-1/2 h-screen  py-20">
+          <SetQuantity quantity={quantity} products={products} />
+        </div>
+        <div className="w-2/6 px-10 h-fit bg-gray-200  flex  flex-col mt-20 py-10 rounded">
+          <h1 className="text-2xl font-semibold mb-5">Overzicht</h1>
+          <div className="flex justify-between mb-8">
+            <div>
+              <p className="mb-2">Artikelen ({cartLength})</p>
+              <p className="mb-2">Verzendkosten</p>
+              <p className="font-semibold mt-10">Nog te betalen</p>
+            </div>
+            <div>
+              <p className="mb-2 font-semibold">
+                € {(totalPrice / 100).toFixed(2)}
+              </p>
+              <p className=" mb-2 font-semibold text-green-700">€ 0.00</p>
+              <p className="font-semibold mt-10">
+                € {(totalPrice / 100).toFixed(2)}
+              </p>
+            </div>
+          </div>
+          <hr />
+
           <Checkout price={totalPrice} metadata={ids} />
-        </span>
+        </div>
       </div>
     </div>
   );

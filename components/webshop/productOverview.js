@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { ShoppingCart } from "lucide-react";
-import { addCart } from "../addCart";
+import { AddCart } from "../addCart";
 import { useRouter } from "next/navigation";
 
 export default function ProductOverview({ products }) {
@@ -41,7 +41,7 @@ export default function ProductOverview({ products }) {
 
         <Button
           className="mt-20 w-fit"
-          onClick={() => addCart(product.id) + router.refresh()}
+          onClick={() => AddCart(product.id) + router.refresh()}
         >
           <ShoppingCart className="mr-2 h-4 w-4" /> Toevoegen aan winkelwagen
         </Button>

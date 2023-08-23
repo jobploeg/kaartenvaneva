@@ -36,7 +36,7 @@ const MonthlySubscriptionCard = ({ price, metadata }) => {
   // render a simple card
   return (
     <div className="">
-      <Button onClick={() => handleClick()} className="px-10">
+      <Button onClick={() => handleClick()} className="w-full">
         Betalen
       </Button>
     </div>
