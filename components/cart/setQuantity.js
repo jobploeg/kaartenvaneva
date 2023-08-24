@@ -62,7 +62,7 @@ export default function SetQuantity({ quantity, products }) {
               className="object-cover bg-center rounded w-32 h-20"
             />
           </div>
-          <div>
+          <div className="md:pr-20">
             <h1 className="text-2xl mb-1">{product.title}</h1>
             <p className="mb-1">{product.description}</p>
             <p className="text-lg font-semibold mb-1">

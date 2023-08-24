@@ -11,7 +11,7 @@ export default function ProductCard({ product }) {
   const router = useRouter();
 
   return (
-    <ul className="mt-4 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
+    <ul className="mt-4 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
       {product.map((product) => (
         <div
           key={product.id}
@@ -27,7 +27,7 @@ export default function ProductCard({ product }) {
                 alt={product.title}
                 height={300}
                 width={300}
-                className="w-screen h-80 object-cover bg-center rounded transition duration-500 group-hover:scale-90 hover:rounded-md shadow-sm"
+                className="w-screen h-80 object-cover bg-center rounded transition duration-500 hover:scale-90 hover:rounded-md shadow-sm"
                 loading="lazy"
               />
             </Link>
@@ -40,7 +40,7 @@ export default function ProductCard({ product }) {
               </p>
 
               <span className="flex md:justify-between ">
-                <Button className="mt-4 w-max">
+                <Button className="mt-4 w-max bg-gray-700">
                   <Link href={`/product/${product.id}`}>Bekijk product</Link>
                 </Button>
                 <Button

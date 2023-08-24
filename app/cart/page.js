@@ -68,14 +68,24 @@ export default async function Page() {
   }
 
   return (
-    <div className="md:mx-40 my-20 mx-5">
-      <h1 className="text-4xl font-bold ">Winkelwagen</h1>
+    <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12">
+      <span>
+        <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
+          Winkelwagen
+        </h2>
+
+        <p className="mt-4 max-w-md text-gray-500">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
+          praesentium cumque iure dicta incidunt est ipsam, officia dolor fugit
+          natus?
+        </p>
+      </span>
 
       <div className="md:flex justify-between">
-        <div className="md:w-1/2 md:h-screen  md:py-20 py-10">
+        <div className="md:w-auto md:h-screen  md:py-20 py-10 ">
           <SetQuantity quantity={quantity} products={products} />
         </div>
-        <div className="md:w-2/6 px-10 h-fit bg-gray-200  flex  flex-col mt-10 md:mt-20 py-10 rounded">
+        <div className="md:w-2/6 px-10 h-fit bg-gray-200  flex  flex-col mt-10 md:mt-20 py-10 rounded sticky top-20">
           <h1 className="text-2xl font-semibold mb-5">Overzicht</h1>
           <div className="flex justify-between mb-8">
             <div>

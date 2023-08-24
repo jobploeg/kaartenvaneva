@@ -30,6 +30,9 @@ export default function Sort() {
         break;
       case "name":
         current = "Naam a - b";
+        break;
+      default:
+        current = "Relevantie";
     }
   }
 
@@ -48,10 +51,10 @@ export default function Sort() {
           <SelectValue placeholder={current} />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="date ">Relevantie</SelectItem>
+          <SelectItem value="date">Relevantie</SelectItem>
           <SelectItem value="asc">Prijs laag - hoog</SelectItem>
           <SelectItem value="desc">Prijs hoog - laag</SelectItem>
-          <SelectItem value="name ">Naam a - b</SelectItem>
+          <SelectItem value="name">Naam a - b</SelectItem>
         </SelectContent>
       </Select>
     </div>
