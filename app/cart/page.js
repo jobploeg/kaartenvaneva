@@ -95,7 +95,7 @@ export default async function Page() {
           </div>
           <hr />
 
-          <Checkout price={totalPrice} metadata={ids} />
+          <Checkout price={totalPrice} metadata={cart} />
         </div>
       </div>
     </div>

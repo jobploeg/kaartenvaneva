@@ -13,9 +13,8 @@ export interface CheckoutBody {
 
 export async function POST(req: Request) {
   const body = (await req.json()) as CheckoutBody;
+  console.log(body.metadata);
   const origin = req.headers.get("origin") || "http://localhost:3000";
-
-  console.log(body);
 
   try {
     // 2. Get the user from Supabase auth
@@ -32,7 +31,6 @@ export async function POST(req: Request) {
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment", // mode should be subscription
-      metadata: body.metadata,
       line_items: [
         {
           price_data: {
@@ -46,6 +44,8 @@ export async function POST(req: Request) {
           quantity: 1,
         },
       ],
+      metadata: body.metadata,
+
       billing_address_collection: "required",
       shipping_address_collection: {
         allowed_countries: ["NL", "BE"],

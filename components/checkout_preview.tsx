@@ -10,13 +10,15 @@ const MonthlySubscriptionCard = ({ price, metadata }) => {
     // step 1: load stripe
     const STRIPE_PK = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;
     const stripe = await loadStripe(STRIPE_PK);
-
+    console.log(metadata);
     // step 2: define the data
     const body: CheckoutBody = {
       amount: price,
       quantity: 1,
       name: "Totaal",
-      metadata: {},
+      metadata: {
+        product_ids: metadata,
+      },
     };
 
     // step 3: make a post fetch api call to /checkout-session handler

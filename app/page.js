@@ -2,14 +2,37 @@ import ProductCard from "../components/webshop/productCard";
 import { supabase } from "../lib/supabaseClient";
 import Filter from "../components/webshop/filter";
 import Sort from "../components/webshop/sort";
+import { cookies } from "next/headers";
 
-async function getAllProducts() {
-  const { data, error } = await supabase.from("products").select("*");
-  // .order("id", { ascending: true });
+async function getAllProducts(sort) {
+  let query = supabase.from("products").select("*");
 
-  if (error) {
-    throw error;
+  if (sort) {
+    switch (sort) {
+      //date and name not triggering, why!!!!
+      case "date":
+        query = query.order("created_at", { ascending: true });
+
+        break;
+      case "asc":
+        query = query.order("price", { ascending: true });
+
+        break;
+      case "desc":
+        query = query.order("price", { ascending: false });
+
+        break;
+      case "name":
+        query = query.order("title", { ascending: true });
+
+        break;
+      default:
+        query = query;
+    }
+    query = query.order("price", { ascending: true });
   }
+
+  const { data, error } = await query;
 
   return data;
 }
@@ -25,21 +48,25 @@ async function getCategories() {
 }
 
 export default async function Page() {
-  const products = await getAllProducts();
+  const cookieStore = cookies();
+
+  const sort = cookieStore.get("sort").value;
+
+  const products = await getAllProducts(sort);
   const categories = await getCategories();
 
   // //when localstorage chnges, rerender
   // window.addEventListener("storage", () => {
   //   setCategory(localStorage.getItem("category"));
   // });
-  console.log(products);
+  // console.log(products);
   return (
     <div>
       <section>
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
           <header>
             <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
-              Kaarten
+              Kaarten {sort}
             </h2>
 
             <p className="mt-4 max-w-md text-gray-500">
