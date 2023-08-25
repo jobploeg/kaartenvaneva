@@ -11,6 +11,7 @@ import { Button } from "../../components/ui/button";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Trash2 } from "lucide-react";
+import Link from "next/link";
 
 export default function SetQuantity({ quantity, products }) {
   const router = useRouter();
@@ -62,8 +63,10 @@ export default function SetQuantity({ quantity, products }) {
               className="object-cover bg-center rounded w-32 h-20"
             />
           </div>
-          <div className="md:pr-20">
-            <h1 className="text-2xl mb-1">{product.title}</h1>
+          <div className="md:pr-10 ">
+            <Link href={`/product/${product.id}`}>
+              <h1 className="text-2xl mb-1 hover:underline">{product.title}</h1>
+            </Link>
             <p className="mb-1">{product.description}</p>
             <p className="text-lg font-semibold mb-1">
               € {product.price.toFixed(2)}{" "}

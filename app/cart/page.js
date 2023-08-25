@@ -82,7 +82,7 @@ export default async function Page() {
       </span>
 
       <div className="md:flex justify-between">
-        <div className="md:w-auto md:h-screen  md:py-20 py-10 ">
+        <div className="md:max-w-1/3 md:h-screen  md:py-20 py-10 ">
           <SetQuantity quantity={quantity} products={products} />
         </div>
         <div className="md:w-2/6 px-10 h-fit bg-gray-200  flex  flex-col mt-10 md:mt-20 py-10 rounded sticky top-20">

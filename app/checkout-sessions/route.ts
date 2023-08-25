@@ -28,6 +28,20 @@ export async function POST(req: Request) {
     //   uuid: user?.id || '',
     //   email: user?.email || ''
     // });
+    // const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
+
+    // products.forEach((product) => {
+    //   line_items.push({
+    //     quantity: quantity[product.id],
+    //     price_data: {
+    //       currency: "EUR",
+    //       product_data: {
+    //         name: product.title,
+    //       },
+    //       unit_amount: product.price.toNumber() * 100,
+    //     },
+    //   });
+    // });
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment", // mode should be subscription

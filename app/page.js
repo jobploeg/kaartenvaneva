@@ -2,6 +2,7 @@ import ProductCard from "../components/webshop/productCard";
 import { supabase } from "../lib/supabaseClient";
 import Filter from "../components/webshop/filter";
 import Sort from "../components/webshop/sort";
+import Cookies from "js-cookie";
 import { cookies } from "next/headers";
 
 async function getAllProducts(sort, categorie) {
@@ -11,7 +12,6 @@ async function getAllProducts(sort, categorie) {
     query = query.eq("categories.name", categorie);
   }
 
-  console.log(sort);
   switch (sort) {
     case "date":
       query = query.order("created_at", { ascending: true });
@@ -49,9 +49,18 @@ async function getCategories() {
 
 export default async function Page() {
   const cookieStore = cookies();
+  let sort;
+  let categorie;
 
-  const sort = cookieStore.get("sort").value;
-  const categorie = cookieStore.get("category").value;
+  if (cookieStore.get("sort")) {
+    sort = cookieStore.get("sort").value;
+  }
+
+  if (cookieStore.get("category")) {
+    categorie = cookieStore.get("category").value;
+  } else {
+    categorie = "Alle kaarten";
+  }
 
   const tempProducts = await getAllProducts(sort, categorie);
   const products = tempProducts.data;

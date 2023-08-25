@@ -34,6 +34,8 @@ export default function Sort() {
       default:
         current = "Relevantie";
     }
+  } else {
+    current = "Relevantie";
   }
 
   function handleSelect(value) {

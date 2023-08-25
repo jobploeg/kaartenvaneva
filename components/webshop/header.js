@@ -7,6 +7,7 @@ import Link from "next/link";
 export default function Header() {
   let totalCart;
   const cart = GetCart();
+
   if (cart === 0 || cart === "undefined") {
     totalCart = 0;
   } else {

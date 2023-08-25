@@ -18,7 +18,7 @@ export default function Filter({ categories }) {
     current = Cookies.get("category");
   }
 
-  if (!current) {
+  if (Cookies.get("category") === undefined) {
     current = "Alle kaarten";
   }
 

@@ -5,9 +5,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import Stripe from "stripe";
 import { Button } from "./ui/button";
 
-const MonthlySubscriptionCard = ({ price, metadata }) => {
+const Checkout = ({ price, metadata }) => {
   const handleClick = async () => {
-    // step 1: load stripe
+    // load stripe
     const STRIPE_PK = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;
     const stripe = await loadStripe(STRIPE_PK);
     console.log(metadata);
@@ -44,4 +44,4 @@ const MonthlySubscriptionCard = ({ price, metadata }) => {
     </div>
   );
 };
-export default MonthlySubscriptionCard;
+export default Checkout;

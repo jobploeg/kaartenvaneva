@@ -12,8 +12,8 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="hidden md:block">
-      <div className="flex h-screen flex-col justify-between border-e bg-white fixed md:w-1/6 shadow-sm w-screen z-30">
+    <div className="hidden md:block ">
+      <div className="flex h-screen flex-col justify-between border-e bg-gray-100 fixed md:w-1/6 shadow-sm w-screen z-30">
         <div className="px-4 py-6">
           {/* <span className="grid h-10 w-32 place-content-center rounded-lg bg-gray-100 text-xs text-gray-600">
           Logo
@@ -32,8 +32,8 @@ export default function Sidebar() {
                 className="block rounded-lg px-4 py-1 text-gray-700"
               >
                 <Button
-                  variant="ghost"
-                  className="w-full text-md justify-start shadow-none hover:bg-slate-200 rounded-t-lg rounded-b-none"
+                  variant="outline"
+                  className="w-full text-md justify-start "
                 >
                   Dashboard
                 </Button>
@@ -45,8 +45,8 @@ export default function Sidebar() {
                 className="block rounded-lg px-4 py-1 text-gray-700"
               >
                 <Button
-                  variant="ghost"
-                  className="w-full text-md justify-start shadow-none hover:bg-slate-200 rounded-none"
+                  variant="outline"
+                  className="w-full text-md justify-start "
                 >
                   Producten
                 </Button>
@@ -58,8 +58,8 @@ export default function Sidebar() {
                 className="block rounded-lg px-4 py-1 text-gray-700"
               >
                 <Button
-                  variant="ghost"
-                  className="w-full text-md justify-start shadow-none hover:bg-slate-200 rounded-t-none rounded-b-lg"
+                  variant="outline"
+                  className="w-full text-md justify-start "
                 >
                   Bestellingen
                 </Button>
@@ -71,7 +71,7 @@ export default function Sidebar() {
         <div className="sticky inset-x-0 bottom-0 border-t border-gray-100">
           <a
             href="#"
-            className="flex items-center gap-2 bg-white p-4 hover:bg-gray-50"
+            className="flex items-center gap-2 bg-gray-100 p-4 hover:bg-gray-50"
           >
             <img
               alt="Man"
