@@ -1,6 +1,6 @@
 import { supabase } from "../../lib/supabaseClient";
 import { cookies } from "next/headers";
-import Checkout from "../../components/checkout_preview";
+import Checkout from "../../components/checkoutButton";
 import SetQuantity from "../../components/cart/setQuantity";
 
 async function getProducts(ids) {
@@ -105,7 +105,8 @@ export default async function Page() {
           </div>
           <hr />
 
-          <Checkout price={totalPrice} metadata={cart} />
+          {/* <Checkout price={totalPrice} metadata={cart} /> */}
+          <Checkout ids={tempId} products={products} quantity={quantity} />
         </div>
       </div>
     </div>

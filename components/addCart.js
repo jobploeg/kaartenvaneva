@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 export function AddCart(id) {
   if (typeof window !== "undefined") {
@@ -6,6 +7,7 @@ export function AddCart(id) {
       let cart = Cookies.get("cart");
 
       Cookies.set("cart", cart + id + ",");
+      toast.success("Product toegevoegd!");
     } else {
       Cookies.set("cart", id + ",");
     }
