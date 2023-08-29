@@ -3,7 +3,7 @@ import { Button } from "../components/ui/button";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 
-export default function Checkout({ products, ids, quantity }) {
+export default function Checkout({ products, ids, quantity, price }) {
   let loading = false;
 
   const onCheckout = async () => {
@@ -13,6 +13,7 @@ export default function Checkout({ products, ids, quantity }) {
       {
         productIds: ids,
         quantity: quantity,
+        price: price,
       }
     );
 

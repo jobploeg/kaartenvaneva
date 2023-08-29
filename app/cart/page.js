@@ -106,7 +106,12 @@ export default async function Page() {
           <hr />
 
           {/* <Checkout price={totalPrice} metadata={cart} /> */}
-          <Checkout ids={tempId} products={products} quantity={quantity} />
+          <Checkout
+            ids={tempId}
+            products={products}
+            quantity={quantity}
+            price={totalPrice}
+          />
         </div>
       </div>
     </div>
