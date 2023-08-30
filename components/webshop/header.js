@@ -8,9 +8,7 @@ export default function Header() {
   let totalCart;
   const cart = GetCart();
 
-  if (cart === 0 || cart === "undefined") {
-    totalCart = 0;
-  } else {
+  if (cart !== 0 || cart !== undefined) {
     const tempCart = cart.split(",");
     totalCart = tempCart.length - 1;
   }
