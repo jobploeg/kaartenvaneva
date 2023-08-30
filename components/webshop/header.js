@@ -9,8 +9,12 @@ export default function Header() {
   const cart = GetCart();
 
   if (cart !== 0 || cart !== undefined) {
-    const tempCart = cart.split(",");
-    totalCart = tempCart.length - 1;
+    if (cart === undefined) {
+      totalCart = 0;
+    } else {
+      const tempCart = cart.split(",");
+      totalCart = tempCart.length - 1;
+    }
   }
 
   return (

@@ -31,7 +31,7 @@ export function RemoveItem(id) {
 }
 
 export function GetCart() {
-  if (typeof window !== "undefined") {
+  if (typeof window !== undefined) {
     if (Cookies.get("cart")) {
       let cart = Cookies.get("cart");
       return cart;
