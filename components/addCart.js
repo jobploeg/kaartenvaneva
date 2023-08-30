@@ -1,3 +1,4 @@
+"use client";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 
@@ -33,7 +34,9 @@ export function RemoveItem(id) {
 export function GetCart() {
   if (typeof window !== undefined) {
     if (Cookies.get("cart")) {
-      let cart = Cookies.get("cart");
+      let tempCart = Cookies.get("cart");
+      let cart = tempCart.split(",");
+
       return cart;
     } else {
       let cart = 0;

@@ -3,19 +3,15 @@
 import { ShoppingCart } from "lucide-react";
 import { GetCart } from "../../components/addCart";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Header() {
-  let totalCart;
-  const cart = GetCart();
+  const [totalCart, setTotalCart] = useState("");
 
-  if (cart !== 0 || cart !== undefined) {
-    if (cart === undefined) {
-      totalCart = 0;
-    } else {
-      const tempCart = cart.split(",");
-      totalCart = tempCart.length - 1;
-    }
-  }
+  useEffect(() => {
+    let cart = GetCart();
+    setTotalCart(cart.length - 1);
+  }, []);
 
   return (
     <div className="pt-9 px-12 flex justify-between">
