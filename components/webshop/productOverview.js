@@ -6,9 +6,26 @@ import { ShoppingCart } from "lucide-react";
 import { AddCart } from "../addCart";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Separator } from "../../components/ui/separator";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../components/ui/select";
 
 export default function ProductOverview({ products }) {
   const router = useRouter();
+  const [quantity, setQuantity] = useState(1);
+
+  function AddToCart(id) {
+    for (let i = 0; i < quantity; i++) {
+      AddCart(id);
+    }
+    router.refresh();
+  }
 
   const product = products[0];
   const imageURLs = product.imageURLs;
@@ -16,8 +33,8 @@ export default function ProductOverview({ products }) {
   const [currentImage, setCurrentImage] = useState(imageURLs[0]);
 
   return (
-    <div className="md:flex md:m-32 m-5">
-      <div className="md:w-1/2">
+    <div className="md:flex md:mt-32 md:m-0 m-5">
+      <div className="md:w-2/3">
         <Image
           src={
             "https://izfokcthbvgcezxcusgh.supabase.co/storage/v1/object/public/images/" +
@@ -44,7 +61,7 @@ export default function ProductOverview({ products }) {
                 className={`rounded object-cover h-32 w-32 mt-4 mr-4 shadow hover:cursor-pointer ${
                   imageURL === currentImage ? "border border-black" : ""
                 }
-                ${imageLength === 1 ? "hidden" : "block"}
+                ${imageLength === 1 ? "hidden" : "block "}
                 `}
                 onClick={() => setCurrentImage(imageURL)}
               />
@@ -52,20 +69,42 @@ export default function ProductOverview({ products }) {
           })}
         </div>
       </div>
-      <div className="md:w-1/2 flex flex-col md:gap-5 gap-3">
-        <h1 className="text-4xl font-medium mt-10 md:mt-0">{product.title}</h1>
-        <p className="bg-gray-700 py-2 px-4 text-white rounded w-fit">
-          {product.categories.name}
-        </p>
-        <p> {product.description}</p>
-        <p className="text-xl"> € {product.price.toFixed(2)}</p>
+      <div className=" flex flex-col  md:gap-5 gap-3 md:w-1/3  md:mr-10">
+        <div className="flex flex-row justify-between text-4xl font-medium mt-10 md:mt-0">
+          <h1 className="">{product.title}</h1>
+          <p className="text-2xl"> € {product.price.toFixed(2)}</p>
+        </div>
 
-        <Button
-          className="md:mt-20 w-fit mt-4"
-          onClick={() => AddCart(product.id) + router.refresh()}
-        >
-          <ShoppingCart className="mr-2 h-4 w-4" /> Toevoegen aan winkelwagen
-        </Button>
+        <div className="flex flex-row mt-10 justify-between">
+          <Select onValueChange={(e) => setQuantity(e)}>
+            <SelectTrigger className="w-min px-5 border-red-700 mr-2">
+              <SelectValue placeholder={quantity} />
+            </SelectTrigger>
+            <SelectContent>
+              {[...(Array(11) + 1)].map((x, i) => (
+                <SelectItem value={i} key={i}>
+                  {i}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Button
+            className="bg-red-700 hover:bg-red-800 "
+            onClick={() => AddToCart(product.id) + router.refresh()}
+          >
+            <ShoppingCart className=" h-4 w-4" /> Toevoegen aan winkelwagen
+          </Button>
+        </div>
+        <div className="mt-10 flex flex-col gap-3">
+          <p className="font-medium ">Beschrijving</p>
+          <Separator />
+          <p> {product.description}</p>
+        </div>
+        <div className="mt-10 flex flex-col gap-3">
+          <p className="font-medium">Categorie</p>
+          <Separator />
+          <p className="">{product.categories.name}</p>
+        </div>
       </div>
     </div>
   );
