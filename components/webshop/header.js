@@ -8,10 +8,11 @@ import { useEffect, useState } from "react";
 export default function Header() {
   const [totalCart, setTotalCart] = useState("");
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     let cart = GetCart();
     setTotalCart(cart.length - 1);
-  }, []);
+  });
 
   return (
     <div className="pt-9 px-12 flex justify-between">
