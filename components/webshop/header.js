@@ -6,12 +6,16 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Header() {
-  const [totalCart, setTotalCart] = useState("");
+  const [totalCart, setTotalCart] = useState();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     let cart = GetCart();
-    setTotalCart(cart.length - 1);
+    if (cart) {
+      setTotalCart(cart.length - 1);
+    } else {
+      setTotalCart(0);
+    }
   });
 
   return (
