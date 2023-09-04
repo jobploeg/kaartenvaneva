@@ -1,6 +1,7 @@
 import "./globals.css";
 import Header from "../components/webshop/header";
 import { Toaster } from "react-hot-toast";
+// import image from "../public/img/bg-image.png";
 
 export const metadata = {
   title: "kaartenvaneva",
@@ -21,7 +22,8 @@ export default function RootLayout({ children }) {
           <Header />
         </header>
         {children}
-        <Toaster />.<footer></footer>
+        <Toaster />
+        <footer></footer>
       </body>
     </html>
   );

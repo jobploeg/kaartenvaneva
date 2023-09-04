@@ -28,9 +28,17 @@ export default function ProductOverview({ products }) {
   }
 
   const product = products[0];
+  console.log(product);
+
   const imageURLs = product.imageURLs;
   const imageLength = imageURLs.length;
   const [currentImage, setCurrentImage] = useState(imageURLs[0]);
+
+  function createMarkup() {
+    return {
+      __html: product.description,
+    };
+  }
 
   return (
     <div className="md:flex md:mt-32 md:m-0 m-5">
@@ -69,7 +77,7 @@ export default function ProductOverview({ products }) {
           })}
         </div>
       </div>
-      <div className=" flex flex-col  md:gap-5 gap-3 md:w-1/3  md:mr-10">
+      <div className=" flex flex-col  md:gap-5 gap-3 md:w-2/3  md:mx-10">
         <div className="flex flex-row justify-between text-4xl font-medium mt-10 md:mt-0">
           <h1 className="">{product.title}</h1>
           <p className="text-2xl flex items-center">
@@ -99,9 +107,7 @@ export default function ProductOverview({ products }) {
           </Button>
         </div>
         <div className="mt-10 flex flex-col gap-3">
-          <p className="font-medium ">Beschrijving</p>
-          <Separator />
-          <p> {product.description}</p>
+          <div dangerouslySetInnerHTML={createMarkup()} />
         </div>
         <div className="mt-10 flex flex-col gap-3">
           <p className="font-medium">Categorie</p>
@@ -110,5 +116,6 @@ export default function ProductOverview({ products }) {
         </div>
       </div>
     </div>
+    // can you make a SEO-optimized description for a ecomerce website. The website sells hand drawn postcard. Give me the description in Dutch.  Use markup language. No full html page. Use the following keywords:  Red, Flowers, Handdrawn, Postcard
   );
 }
