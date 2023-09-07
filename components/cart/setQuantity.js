@@ -50,7 +50,7 @@ export default function SetQuantity({ quantity, products }) {
           key={product.id}
           className="mb-5 flex gap-2 flex-row  border rounded border-gray-300 p-4"
         >
-          <div className="mt-1.5 mr-7">
+          <div className="mt-1 mr-7">
             <Image
               src={
                 "https://izfokcthbvgcezxcusgh.supabase.co/storage/v1/object/public/images/" +
@@ -60,16 +60,15 @@ export default function SetQuantity({ quantity, products }) {
               height={110}
               width={110}
               loading="lazy"
-              className="object-cover bg-center rounded w-32 h-20"
+              className="object-cover bg-center rounded w-48 h-32"
             />
           </div>
           <div className="md:pr-10 ">
             <Link href={`/product/${product.id}`}>
               <h1 className="text-2xl mb-1 hover:underline">{product.title}</h1>
             </Link>
-            <p className="mb-1">{product.description}</p>
             <p className="text-lg font-semibold mb-1">
-              € {product.price.toFixed(2)}{" "}
+              € {product.price.toFixed(2)}
             </p>
             <div className="flex mt-5">
               <Select

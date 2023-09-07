@@ -2,12 +2,13 @@
 import { Button } from "../components/ui/button";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
+import { useState } from "react";
 
 export default function Checkout({ products, ids, quantity, price }) {
-  let loading = false;
+  const [isLoading, setIsLoading] = useState(false);
 
   const onCheckout = async () => {
-    loading = true;
+    setIsLoading(true);
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
       {
@@ -18,27 +19,16 @@ export default function Checkout({ products, ids, quantity, price }) {
     );
 
     window.location = response.data.url;
-    loading = false;
   };
-
-  if (loading === true) {
-    return (
-      <>
-        <Button disabled className="w-full">
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Laden
-        </Button>
-      </>
-    );
-  }
 
   return (
     <>
       <Button
         onClick={onCheckout}
-        disabled={products.length === 0}
+        disabled={products.length === 0 || isLoading === true}
         className="w-full"
       >
+        {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         betalen
       </Button>
     </>

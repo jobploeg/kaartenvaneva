@@ -105,7 +105,6 @@ export default async function Page() {
           </div>
           <hr />
 
-          {/* <Checkout price={totalPrice} metadata={cart} /> */}
           <Checkout
             ids={tempId}
             products={products}

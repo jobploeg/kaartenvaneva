@@ -33,9 +33,7 @@ export default function Filter({ categories }) {
           <SelectValue placeholder={current} />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="Alle kaarten">Alle kaarten</SelectItem>
-
-          {categories.map((category) => {
+          {categories.reverse().map((category) => {
             return (
               <SelectItem
                 value={category.name}
