@@ -21,7 +21,7 @@ export default function Header() {
   return (
     <div className="pt-9 px-12 flex justify-between">
       <nav>
-        <Link href={"/"} className="text-2xl text-red-700 font-semibold">
+        <Link href={"/"} className="text-3xl text-red-700 font-bold">
           kaartenvanEva
         </Link>
       </nav>

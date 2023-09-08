@@ -48,7 +48,7 @@ export default function SetQuantity({ quantity, products }) {
       {products.map((product) => (
         <div
           key={product.id}
-          className="mb-5 flex gap-2 flex-row  border rounded border-gray-300 p-4"
+          className="mb-5 flex gap-2 flex-row  border rounded border-black p-4"
         >
           <div className="mt-1 mr-7">
             <Image
@@ -76,7 +76,7 @@ export default function SetQuantity({ quantity, products }) {
                   handleQuantity(product.id, quantity[product.id], value)
                 }
               >
-                <SelectTrigger className="w-min px-10 border-gray-800 mb-3 ">
+                <SelectTrigger className="w-min px-10 border-black mb-3 ">
                   <SelectValue placeholder={quantity[product.id]} />
                 </SelectTrigger>
                 <SelectContent>

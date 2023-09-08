@@ -73,11 +73,6 @@ module.exports = {
         my_bg_image: "url('../public/img/bg-image.png')",
       },
     },
-    colors: {
-      brand: "#d5674c",
-      brandPurple: "#636199",
-      brandBlue: "#73a5a8",
-    },
   },
   plugins: [require("tailwindcss-animate")],
 };

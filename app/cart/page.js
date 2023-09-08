@@ -74,7 +74,7 @@ export default async function Page() {
           Winkelwagen
         </h2>
 
-        <p className="mt-4 max-w-md text-gray-500">
+        <p className="mt-4 max-w-md text-black">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
           praesentium cumque iure dicta incidunt est ipsam, officia dolor fugit
           natus?
@@ -85,7 +85,7 @@ export default async function Page() {
         <div className="md:max-w-1/3 md:h-screen  md:py-20 py-10 ">
           <SetQuantity quantity={quantity} products={products} />
         </div>
-        <div className="md:w-2/6 px-10 h-fit bg-gray-200  flex  flex-col mt-10 md:mt-20 py-10 rounded sticky top-20">
+        <div className="md:w-2/6 px-10 h-fit border border-black  flex  flex-col mt-10 md:mt-20 py-10 rounded sticky top-20">
           <h1 className="text-2xl font-semibold mb-5">Overzicht</h1>
           <div className="flex justify-between mb-8">
             <div>
@@ -103,7 +103,6 @@ export default async function Page() {
               </p>
             </div>
           </div>
-          <hr />
 
           <Checkout
             ids={tempId}

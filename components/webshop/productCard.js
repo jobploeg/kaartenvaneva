@@ -40,13 +40,16 @@ export default function ProductCard({ product }) {
               </p>
 
               <span className="flex md:justify-between ">
-                <Button className="mt-4 w-max bg-gray-700">
+                <Button
+                  variant="outline"
+                  className="mt-4 w-max border-black hover:bg-transparent hover:scale-y-105"
+                >
                   <Link href={`/product/${product.id}`}>Bekijk product</Link>
                 </Button>
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="icon"
-                  className="hover:scale-105 shadow-none ml-5 scale-110 mt-3.5 md:mt-0 md:ml-0 md:scale-100"
+                  className="hover:scale-105 shadow-none ml-5 scale-110 mt-3.5 md:mt-0 md:ml-0 md:scale-100 hover:bg-transparent border-none"
                   onClick={() => AddCart(product.id) + router.refresh()}
                 >
                   <ShoppingCart />

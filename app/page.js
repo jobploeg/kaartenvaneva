@@ -83,11 +83,11 @@ export default async function Page() {
       <section>
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
           <span>
-            <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
+            <h2 className="text-xl font-bold text-black sm:text-3xl">
               Kaarten
             </h2>
 
-            <p className="mt-4 max-w-md text-gray-500">
+            <p className="mt-4 max-w-md text-black">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
               praesentium cumque iure dicta incidunt est ipsam, officia dolor
               fugit natus?

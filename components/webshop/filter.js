@@ -29,7 +29,7 @@ export default function Filter({ categories }) {
   return (
     <div className="mb-5">
       <Select onValueChange={(value) => handleSelect(value)}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px] border-black">
           <SelectValue placeholder={current} />
         </SelectTrigger>
         <SelectContent>
