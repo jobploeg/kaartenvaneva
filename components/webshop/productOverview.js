@@ -81,14 +81,13 @@ export default function ProductOverview({ products }) {
         <div className="flex flex-row justify-between text-4xl font-medium mt-10 md:mt-0">
           <h1 className="">{product.title}</h1>
           <p className="text-2xl flex items-center">
-            {" "}
             € {product.price.toFixed(2)}
           </p>
         </div>
 
         <div className="flex flex-row mt-10 justify-between">
           <Select onValueChange={(e) => setQuantity(e)}>
-            <SelectTrigger className="w-min px-5 border-red-700 mr-2">
+            <SelectTrigger className="w-min px-5  mr-2">
               <SelectValue placeholder={quantity} />
             </SelectTrigger>
             <SelectContent>
@@ -100,10 +99,11 @@ export default function ProductOverview({ products }) {
             </SelectContent>
           </Select>
           <Button
-            className="bg-red-700 hover:bg-red-800 "
+            variant="outline"
+            className=" border-black hover:bg-transparent w-fit"
             onClick={() => AddToCart(product.id) + router.refresh()}
           >
-            <ShoppingCart className=" h-4 w-4" /> Toevoegen aan winkelwagen
+            <ShoppingCart className=" h-4 w-4 mr-4" /> Toevoegen aan winkelwagen
           </Button>
         </div>
         <div className="mt-10 flex flex-col gap-3">
@@ -112,10 +112,9 @@ export default function ProductOverview({ products }) {
         <div className="mt-10 flex flex-col gap-3">
           <p className="font-medium">Categorie</p>
           <Separator />
-          <p className="">{product.categories.name}</p>
+          <p>{product.categories.name}</p>
         </div>
       </div>
     </div>
-    // can you make a SEO-optimized description for a ecomerce website. The website sells hand drawn postcard. Give me the description in Dutch.  Use markup language. No full html page. Use the following keywords:  Red, Flowers, Handdrawn, Postcard
   );
 }

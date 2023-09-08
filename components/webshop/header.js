@@ -4,6 +4,13 @@ import { ShoppingCart } from "lucide-react";
 import { GetCart } from "../../components/addCart";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Chicle } from "next/font/google";
+
+const chicle = Chicle({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+});
 
 export default function Header() {
   const [totalCart, setTotalCart] = useState();
@@ -19,10 +26,10 @@ export default function Header() {
   });
 
   return (
-    <div className="pt-9 px-12 flex justify-between">
+    <div className="pt-9 px-5 md:px-12 flex justify-between">
       <nav>
         <Link href={"/"} className="text-3xl text-red-700 font-bold">
-          kaartenvanEva
+          <h1 className={`${chicle.className} text-5xl`}>kaartenvanEva</h1>
         </Link>
       </nav>
       <div className=" hover:cursor-pointer">

@@ -4,6 +4,13 @@ import Filter from "../components/webshop/filter";
 import Sort from "../components/webshop/sort";
 import Cookies from "js-cookie";
 import { cookies } from "next/headers";
+// import { Chicle } from "next/font/google";
+
+// const chicle = Chicle({
+//   subsets: ["latin"],
+//   display: "swap",
+//   weight: "400",
+// });
 
 async function getAllProducts(sort, categorie) {
   let query = supabase.from("products").select("*, categories!inner(*)");
@@ -81,9 +88,9 @@ export default async function Page() {
   return (
     <div>
       <section>
-        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div className="md:mx-auto md:max-w-screen-xl px-5 py-8 sm:px-6 sm:py-12 lg:px-8">
           <span>
-            <h2 className="text-xl font-bold text-black sm:text-3xl">
+            <h2 className={`text-xl font-bold text-black sm:text-3xl `}>
               Kaarten
             </h2>
 

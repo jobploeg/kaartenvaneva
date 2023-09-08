@@ -1,7 +1,13 @@
 import "./globals.css";
 import Header from "../components/webshop/header";
 import { Toaster } from "react-hot-toast";
-// import image from "../public/img/bg-image.png";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+});
 
 export const metadata = {
   title: "kaartenvaneva",
@@ -18,13 +24,15 @@ export default function RootLayout({ children }) {
         ></link>
       </head>
       {/* <body className="h-screen bg-cover bg-[url('../public/img/bg-cool2.png')] bg-fixed bg-no-repeat "> */}
-      <body className=" h-screen flex flex-col bg-[#f37c62]">
-        <header className="h-min w-screen">
+      <body
+        className={`h-screen flex flex-col bg-[#f37c62] ${poppins.className}`}
+      >
+        <header className="h-min w-screen mb-10">
           <Header />
         </header>
         <main>{children}</main>
         <footer className="flex h-10 justify-center items-center w-screen mt-auto">
-          <p className="mb-4">kaartenvaneva</p>
+          <p className={`mb-4 `}>kaartenvaneva</p>
         </footer>
         <Toaster />
       </body>
