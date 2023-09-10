@@ -31,9 +31,9 @@ export default function RootLayout({ children }) {
           <Header />
         </header>
         <main>{children}</main>
-        <footer className="flex h-10 justify-center items-center w-screen mt-auto">
+        {/* <footer className="flex h-10 justify-center items-center w-screen mt-auto">
           <p className={`mb-4 `}>kaartenvaneva</p>
-        </footer>
+        </footer> */}
         <Toaster />
       </body>
     </html>
