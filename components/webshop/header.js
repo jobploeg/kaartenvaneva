@@ -34,10 +34,12 @@ export default function Header() {
           </h1>
         </Link>
       </nav>
-      <div className=" hover:cursor-pointer">
+      <div className=" hover:cursor-pointer mt-1">
         <Link href={"/cart"} className="flex">
           <ShoppingCart className="scale-125 md:mt-1 mt-3" />
-          <p className="-mt-4 ml-2 font-semibold text-xl">{totalCart}</p>
+          <p className="-mt-2 md:-mt-4 ml-2 font-semibold text-xl">
+            {totalCart}
+          </p>
         </Link>
       </div>
     </div>

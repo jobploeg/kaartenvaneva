@@ -60,7 +60,7 @@ export default function SetQuantity({ quantity, products }) {
               height={110}
               width={110}
               loading="lazy"
-              className="object-cover bg-center rounded w-48 h-32"
+              className="object-cover bg-center rounded w-48 h-32 hidden md:block"
             />
           </div>
           <div className="md:pr-10 ">

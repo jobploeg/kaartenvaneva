@@ -78,14 +78,14 @@ export default function ProductOverview({ products }) {
         </div>
       </div>
       <div className=" flex flex-col  md:gap-5 gap-3 md:w-2/3  md:mx-10">
-        <div className="flex flex-row justify-between text-4xl font-medium mt-10 md:mt-0">
-          <h1 className="">{product.title}</h1>
+        <div className="flex flex-row justify-between flex-wrap text-4xl  font-medium mt-10 md:mt-0">
+          <h1 className="mr-4">{product.title}</h1>
           <p className="text-2xl flex items-center">
             € {product.price.toFixed(2)}
           </p>
         </div>
 
-        <div className="flex flex-row mt-10 justify-between">
+        <div className="flex flex-row mt-10 justify-between flex-wrap gap-2">
           <Select onValueChange={(e) => setQuantity(e)}>
             <SelectTrigger className="w-min px-5  mr-2">
               <SelectValue placeholder={quantity} />

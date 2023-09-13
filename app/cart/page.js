@@ -2,6 +2,13 @@ import { supabase } from "../../lib/supabaseClient";
 import { cookies } from "next/headers";
 import Checkout from "../../components/checkoutButton";
 import SetQuantity from "../../components/cart/setQuantity";
+import { Chicle } from "next/font/google";
+
+const chicle = Chicle({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+});
 
 async function getProducts(ids) {
   const { data, error } = await supabase
@@ -70,14 +77,15 @@ export default async function Page() {
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12">
       <span>
-        <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
+        <h2
+          className={`text-2xl text-black tracking-wider ${chicle.className}`}
+        >
           Winkelwagen
         </h2>
 
-        <p className="mt-4 max-w-md text-black">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
-          praesentium cumque iure dicta incidunt est ipsam, officia dolor fugit
-          natus?
+        <p className="max-w-md text-black">
+          Dit is je winkelwagen. Bekijk al je producten, voeg meer toe of
+          verwijder ze. Check het overzicht, en bestellen maar!
         </p>
       </span>
 
