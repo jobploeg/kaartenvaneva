@@ -60,7 +60,7 @@ export default async function Page() {
   if (cart === "") {
     return (
       <>
-        <h1 className="text-4xl font-semibold p-20">
+        <h1 className="text-4xl font-semibold p-5 md:p-20 mb-60">
           Geen producten in winkelwagen
         </h1>
       </>

@@ -50,9 +50,9 @@ export default function ProductOverview({ products }) {
           }
           alt={product.title}
           width={450}
-          height={450}
+          height={600}
           key={currentImage}
-          className="rounded object-cover shadow h-fit"
+          className="rounded object-cover shadow h-72"
         />
         <div className="flex">
           {imageURLs.map((imageURL) => {

@@ -101,7 +101,7 @@ export default async function Page() {
             </p>
           </span>
 
-          <div className="mt-8 flex items-center justify-between ">
+          <div className="mt-8 flex items-center justify-between flex-wrap gap-2 ">
             <Filter categories={categories} />
 
             <Sort />

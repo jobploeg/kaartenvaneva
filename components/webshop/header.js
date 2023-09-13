@@ -36,7 +36,7 @@ export default function Header() {
       </nav>
       <div className=" hover:cursor-pointer">
         <Link href={"/cart"} className="flex">
-          <ShoppingCart className="scale-125" />
+          <ShoppingCart className="scale-125 md:mt-1 mt-3" />
           <p className="-mt-4 ml-2 font-semibold text-xl">{totalCart}</p>
         </Link>
       </div>

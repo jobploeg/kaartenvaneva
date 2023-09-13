@@ -10,6 +10,13 @@ import { useRouter } from "next/navigation";
 export default function ProductCard({ product }) {
   const router = useRouter();
 
+  if (product.length === 0) {
+    return (
+      <div className="mb-40 md:mt-20">
+        <h1> Geen producten</h1>
+      </div>
+    );
+  }
   return (
     <ul className="mt-4 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
       {product.map((product) => (
