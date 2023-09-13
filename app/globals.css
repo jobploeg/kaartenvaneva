@@ -176,3 +176,17 @@
     @apply text-lg;
   } */
 }
+
+.background-theme {
+  background-color: rgb(252, 231, 243);
+  background-image: radial-gradient(
+      at 57% 63%,
+      rgb(240, 171, 252) 0,
+      transparent 32%
+    ),
+    radial-gradient(at 39% 27%, rgb(229, 231, 235) 0, transparent 59%),
+    radial-gradient(at 20% 15%, rgb(236, 72, 153) 0, transparent 3%),
+    radial-gradient(at 89% 51%, rgb(187, 247, 208) 0, transparent 63%),
+    radial-gradient(at 63% 19%, rgb(107, 114, 128) 0, transparent 26%),
+    radial-gradient(at 14% 5%, rgb(216, 180, 254) 0, transparent 5%);
+}

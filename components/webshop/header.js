@@ -28,8 +28,10 @@ export default function Header() {
   return (
     <div className="pt-9 px-5 md:px-12 flex justify-between">
       <nav>
-        <Link href={"/"} className="text-3xl text-red-700 font-bold">
-          <h1 className={`${chicle.className} text-5xl`}>kaartenvanEva</h1>
+        <Link href={"/"} className="text-3xl font-bold">
+          <h1 className={`${chicle.className} text-5xl  text-[#e85a4f]`}>
+            kaartenvanEva
+          </h1>
         </Link>
       </nav>
       <div className=" hover:cursor-pointer">

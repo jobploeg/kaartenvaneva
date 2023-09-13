@@ -25,15 +25,21 @@ export default function RootLayout({ children }) {
       </head>
       {/* <body className="h-screen bg-cover bg-[url('../public/img/bg-cool2.png')] bg-fixed bg-no-repeat "> */}
       <body
-        className={`h-screen flex flex-col bg-[#f37c62] ${poppins.className}`}
+        className={`h-screen flex flex-col bg-[#eae8dc] ${poppins.className}`}
       >
+        {/* <body
+        className={`h-screen flex flex-col bg-fixed bg-cover bg-no-repeat bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-red-100 via-red-200 to-red-400 ${poppins.className}`}
+      ></body> */}
+        {/* <body
+        className={`h-screen flex flex-col background-theme bg-no-repeat bg-fixed bg-cover ${poppins.className} scroll-smooth`}
+      > */}
         <header className="h-min w-screen mb-10">
           <Header />
         </header>
         <main>{children}</main>
-        {/* <footer className="flex h-10 justify-center items-center w-screen mt-auto">
-          <p className={`mb-4 `}>kaartenvaneva</p>
-        </footer> */}
+        <footer className="flex h-10 justify-center items-center w-screen mt-32">
+          <p className={`mb-4 text-[#e85a4f]`}>kaartenvaneva</p>
+        </footer>
         <Toaster />
       </body>
     </html>
